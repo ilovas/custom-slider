@@ -1,0 +1,183 @@
+:root {
+  --thumbSize: 78px;
+  --thumbCircleBlurredColor: rgba(67, 112, 200, 1);
+  --thumbHoverColor: rgba(255, 255, 255, 1);
+  --thumbActiveColor: rgba(255, 255, 255, 1);
+  --thumbCircleBackground: linear-gradient(
+                  0deg,
+                  rgba(255, 255, 255, 0.2),
+                  rgba(255, 255, 255, 0.2)),
+  linear-gradient(
+                  90deg,
+                  rgba(213, 213, 213, 1) 0%,
+                  rgba(219, 219, 219, 1) 9.02%,
+                  rgba(202, 202, 202, 1) 18.59%,
+                  rgba(175, 175, 175, 1) 83.1%,
+                  rgba(197, 197, 197, 1) 92.41%,
+                  rgba(168, 168, 168, 1) 100%
+  );
+  --thumbCircleBoxShadow: inset -0.64257px -0.64257px 1.28514px rgba(30, 30, 30, 0.2),
+                          inset -1.28514px -1.28514px 2.57028px rgba(30, 30, 30, 0.2);
+  --thumbCircleOverlayBackgroundColor: linear-gradient(
+                                         139.1deg,
+                                         rgba(230, 230, 230, 1) 12.96%,
+                                         rgba(243, 243, 243, 1) 90.19%
+                                       );
+  --thumbCircleOverlayBoxShadow: inset -0.321285px -0.321285px 0.64257px rgba(0, 0, 0, 0.1),
+                                 inset -1.28514px -1.28514px 1.28514px rgba(30, 30, 30, 0.2),
+                                 inset 1.28514px 1.28514px 0px rgba(255, 255, 255, 0.5);
+  --trackBackgroundColor: rgba(236, 238, 246, 0.22);
+  --trackBoxShadow: inset -0.723053px 0px 1.44611px rgba(0, 0, 0, 0.05),
+                    inset 0.723053px 0px 1.44611px rgba(0, 0, 0, 0.05);
+  --trackBoxShadowDeep: inset 10.4843px 22.4147px 13.8px rgba(0, 0, 0, 0.02),
+                        inset 4.69985px 9.76122px 10.8458px rgba(0, 0, 0, 0.1),
+                        inset 1.08458px 2.53069px 6.14595px rgba(0, 0, 0, 0.25);
+  --trackBorderColor: rgba(194, 194, 194, 0.6);
+  --trackProgressColor: linear-gradient(
+                          90deg,
+                          rgba(139, 170, 233, 1) var(--thumbSize),
+                          rgba(139, 170, 233, 1) 12.61%,
+                          rgba(71, 120, 219, 1) 93.32%
+                        );
+  --trackLightAnimationBoxShadow: 0 0 20px 8px rgba(255, 255, 255, 1);
+  --trackLightAnimationBackgroundColor: rgba(0, 0, 0, .2);
+}
+
+.slider {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+}
+.slider * {
+  box-sizing: border-box;
+}
+.slider .track {
+  overflow: hidden;
+  padding: 0 39px;
+  height: 81px;
+  background: var(--trackBackgroundColor);
+  border-radius: 78px;
+  box-shadow: var(--trackBoxShadowDeep);
+}
+.slider .track:focus {
+  outline: none;
+}
+.slider .track::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 78px;
+  box-shadow: var(--trackBoxShadow);
+}
+.slider .track::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 2px;
+  right: 7px;
+  bottom: 2px;
+  left: 7px;
+  border: 0.36px solid var(--trackBorderColor);
+  border-radius: 78px;
+  filter: blur(0.723px);
+}
+.slider .thumb {
+  position: relative;
+  z-index: 4;
+  cursor: pointer;
+  width: 100%;
+  height: 78px;
+  margin-top: 0;
+}
+.slider .thumb::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  background: var(--trackLightAnimationBackgroundColor);
+  border-radius: 50%;
+  box-shadow: var(--trackLightAnimationBoxShadow);
+  transform: translateY(-50%);
+  filter: blur(20px);
+  animation: moveCircle 1500ms linear infinite;
+}
+.slider .thumb.started::before {
+  position: static;
+  animation: none;
+}
+.slider .thumb .progress {
+  position: absolute;
+  top: 2px;
+  right: -39px;
+  bottom: 0;
+  left: -39px;
+  background: var(--trackProgressColor);
+}
+.slider .thumb .thumbCircle {
+  position: absolute;
+  width: 78px;
+  height: 78px;
+  right: -78px;
+  border-radius: 50%;
+  background: var(--thumbCircleBackground);
+  box-shadow: var(--thumbCircleBoxShadow);
+}
+.slider .thumb .thumbCircle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--thumbCircleBlurredColor);
+  filter: blur(30px);
+}
+.slider .thumb .thumbCircle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 4px;
+  left: 1px;
+  border-radius: 50%;
+  background: var(--thumbCircleOverlayBackgroundColor);
+  box-shadow: var(--thumbCircleOverlayBoxShadow);
+  filter: blur(0.642px);
+}
+.slider .thumb .thumbCircle:hover::after {
+  background: var(--thumbHoverColor);
+}
+.slider .thumb .thumbCircle svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+}
+.slider .thumb .thumbCircle:active::after {
+  background: var(--thumbActiveColor);
+  top: 4.5px;
+  bottom: -4.5px;
+}
+.slider .thumb .thumbCircle:active svg {
+  top: calc(50% + 4.5px);
+}
+
+@keyframes moveCircle {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(100% - 78px);
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
