@@ -117,7 +117,7 @@ $thumbActiveMove: 4.5px;
       box-shadow: var(--trackLightAnimationBoxShadow);
       transform: translateY(-50%);
       filter: blur(20px);
-      animation: moveCircle 1500ms linear infinite;
+      animation: moveLight 1500ms linear infinite;
     }
 
     &.started::before {
@@ -194,7 +194,7 @@ $thumbActiveMove: 4.5px;
   }
 }
 
-@keyframes moveCircle {
+@keyframes moveLight {
   0% {
     left: 0;
   }
