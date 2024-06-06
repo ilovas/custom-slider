@@ -79,9 +79,9 @@
   position: absolute;
   z-index: 3;
   top: 2px;
-  right: 7px;
+  right: 4px;
   bottom: 2px;
-  left: 7px;
+  left: 4px;
   border: 0.36px solid var(--trackBorderColor);
   border-radius: 78px;
   filter: blur(0.723px);
