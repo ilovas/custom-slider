@@ -139,6 +139,8 @@
   left: 0;
   background-color: var(--thumbCircleBlurredColor);
   filter: blur(30px);
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 }
 .slider .thumb .thumbCircle::after {
   content: "";
@@ -151,6 +153,8 @@
   background: var(--thumbCircleOverlayBackgroundColor);
   box-shadow: var(--thumbCircleOverlayBoxShadow);
   filter: blur(0.642px);
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 }
 .slider .thumb .thumbCircle:hover::after {
   background: var(--thumbHoverColor);
