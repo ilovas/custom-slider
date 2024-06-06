@@ -99,7 +99,6 @@ $thumbActiveMove: 4.5px;
   .thumb {
     position: relative;
     z-index: 4;
-    cursor: pointer;
     width: 100%;
     height: $thumbSize;
     margin-top: 0;
@@ -142,6 +141,7 @@ $thumbActiveMove: 4.5px;
       border-radius: 50%;
       background: var(--thumbCircleBackground);
       box-shadow: var(--thumbCircleBoxShadow);
+      cursor: pointer;
 
       &::before {
         content: "";
